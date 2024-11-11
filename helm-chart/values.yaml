@@ -2,7 +2,7 @@ image:
   repository: supertokens/supertokens-postgresql
   pullPolicy: IfNotPresent
   # -- Overrides the image tag whose default is the chart appVersion.
-  tag: "7.0"
+  tag: "9.2.2"
 
 replicaCount: 1
 imagePullSecrets: []
@@ -10,7 +10,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 # -- Use existing Secret in the same namespace. **NOTE** If specified, any `database` and `apiKeys` options are ignored.
-existingSecret: null
+existingSecret: "supertokens"
 
 database:
   # -- database uri (connection string), used instaed of other params if not empty
@@ -21,7 +21,7 @@ database:
   port: 5432
   # -- database host
   host: postgres.postgres
-  # -- database user 
+  # -- database user
   user: postgres
   # -- database password
   password: password
@@ -33,13 +33,13 @@ service:
   type: ClusterIP
 
 # -- Time in seconds for how long an access token is valid for
-accessTokenValidity: 3600
+accessTokenValidity: 259200
 
 # -- If true, allows for immediate revocation of any access token. Keep in mind that setting this to true will result in a db query for each API call that requires authentication.
 accessTokenBlacklisting: false
 
 # -- If this is set to true, the JWT (access token) signing key will change every fixed interval of time.
-accessTokenSigningKeyDynamic: true
+accessTokenSigningKeyDynamic: false
 
 # -- Time in hours for how frequently the JWT (access token) signing key will change. This value only makes sense if "accessTokenSigningKeyDynamic" is true.
 accessTokenSigningKeyUpdateInterval: 168
@@ -73,7 +73,7 @@ apiKeys:
 
 serviceAccount:
   # -- Specifies whether a service account should be created
-  create: true
+  create: false
   # -- Annotations to add to the service account
   annotations: {}
   # -- The name of the service account to use.
@@ -97,17 +97,13 @@ securityContext:
 
 # -- limit and requests for resources for supertokens-core container
 resources:
-  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
 
 # -- Configure liveness [probe] for the supertokens-core container
 # @default -- See [values.yaml]
@@ -157,3 +153,4 @@ autoscaling:
 #               values:
 #                 - supertokens
 #         topologyKey: kubernetes.io/hostname
+

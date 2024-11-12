@@ -57,7 +57,8 @@ emailVerificationTokenLifetime: 86400000
 passwordlessMaxCodeInputAttempts: 5
 
 # -- Time in milliseconds for how long a passwordless code is valid for.
-passwordlessCodeLifetime: 900000
+# -- 12 hours - Applies to OTP and Magic Links (default 900000)
+passwordlessCodeLifetime: 43200000
 
 basePath: ""
 

@@ -61,7 +61,7 @@ passwordlessCodeLifetime: 900000
 
 basePath: ""
 
-disableTelemetry: false
+disableTelemetry: true
 
 maxServerPoolSize: 10
 

@@ -33,7 +33,7 @@ service:
   type: ClusterIP
 
 # -- Time in seconds for how long an access token is valid for
-accessTokenValidity: 259200
+accessTokenValidity: 604800
 
 # -- If true, allows for immediate revocation of any access token. Keep in mind that setting this to true will result in a db query for each API call that requires authentication.
 accessTokenBlacklisting: false
@@ -58,7 +58,7 @@ passwordlessMaxCodeInputAttempts: 5
 
 # -- Time in milliseconds for how long a passwordless code is valid for.
 # -- 12 hours - Applies to OTP and Magic Links (default 900000)
-passwordlessCodeLifetime: 43200000
+passwordlessCodeLifetime: 172800000
 
 basePath: ""
 
